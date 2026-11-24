@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { products } from '@/data/products';
-import ProductVisual from '@/components/ProductVisual';
+import { realImage } from '@/components/ProductVisual';
 import ProductCard from '@/components/ProductCard';
 import ScrollStory from '@/components/ScrollStory';
 import Reveal from '@/components/Reveal';
 import TimelineReveal from '@/components/TimelineReveal';
-import FloatField from '@/components/FloatField';
+import HeroRotator from '@/components/HeroRotator';
 import Marquee from '@/components/Marquee';
 import CardStack from '@/components/CardStack';
 
@@ -19,13 +19,9 @@ export const metadata: Metadata = {
 
 const featured = ['tins', 'leaning-jars', 'bio-boxes'].map((s) => products.find((p) => p.slug === s)!);
 const pick = (slug: string) => products.find((p) => p.slug === slug)!;
-const cluster = [
-  { slug: 'tins', x: 8, y: 22, w: 84, depth: 14, z: 3, auto: false, label: false, rot: 0 },
-  { slug: 'leaning-jars', x: -6, y: -4, w: 46, depth: 30, z: 2, auto: false, label: false, rot: -4 },
-  { slug: 'aluminum-cans', x: 58, y: 50, w: 46, depth: 34, z: 4, auto: false, label: false, rot: 4 },
-  { slug: 'bio-boxes', x: -8, y: 52, w: 48, depth: 24, z: 4, auto: false, label: false, rot: 3 },
-  { slug: 'vacusnap-caps', x: 58, y: -6, w: 44, depth: 40, z: 2, auto: false, label: false, rot: -3 },
-].map((c, i) => ({ node: <ProductVisual product={pick(c.slug)} auto={c.auto} label={c.label} lcp />, x: c.x, y: c.y, w: c.w, depth: c.depth, z: c.z, rot: c.rot, delay: i * 1.7 }));
+const heroItems = ['tins', 'leaning-jars', 'bio-boxes', 'aluminum-cans', 'topicals', 'vacusnap-caps']
+  .map((slug) => ({ slug, name: pick(slug).name, src: realImage(slug) }))
+  .filter((x): x is { slug: string; name: string; src: string } => !!x.src);
 const stackCards = [
   { title: 'Committed to safety', text: 'The most important feature of each package is its ability to pass the rigid safety standards put in place for each industry.', tone: 'white' as const },
   { title: 'Custom development', text: 'Specific material, size, shape, custom branding and labeling: tailored to your product.', tone: 'sky' as const },
@@ -53,7 +49,7 @@ export default function Home() {
               <Link href="/product-development" className="btn ghost" data-track="quote_cta" data-track-location="hero">Develop Your Packaging</Link>
             </div>
           </div>
-          <div className="hero-stage"><FloatField items={cluster} /></div>
+          <div className="hero-stage"><HeroRotator items={heroItems} /></div>
         </div>
       </section>
 
