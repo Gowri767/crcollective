@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import { products, bySlug, related, site } from '@/data/products';
 import { realImage } from '@/components/ProductVisual';
 import ProductHero from '@/components/ProductHero';
+import PhotoStory from '@/components/PhotoStory';
+import { photos } from '@/data/photos';
 import { media } from '@/data/media';
 import ProductCard from '@/components/ProductCard';
 import Crumbs from '@/components/Crumbs';
@@ -29,6 +31,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         <Crumbs items={[{ name: 'Home', href: '/' }, { name: 'Catalog', href: '/catalog' }, { name: p.name }]} />
       </section>
       <ProductHero p={p} hero={img} variants={media[p.slug]?.variants ?? {}} gallery={media[p.slug]?.gallery ?? []} />
+
+      {photos[p.slug] && <PhotoStory title="See it in real life" photos={photos[p.slug]} />}
 
       {p.claims.length > 0 && (
         <section className="sec stone"><div className="wrap cols">
