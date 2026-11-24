@@ -15,7 +15,7 @@ export default function Nav() {
   return (
     <header className={`nav${scrolled ? ' scrolled' : ''}`}>
       <div className="wrap pill">
-        <Link href="/" className="logo" aria-label="CR Collective home"><span className="mark" aria-hidden="true">CR</span>Collective</Link>
+        <Link href="/" className="logo" aria-label="CR Collective home">{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/logo.png" alt="CR Collective" width={765} height={132} /></Link>
         <button className="burger" aria-expanded={open} aria-controls="menu" aria-label="Menu" onClick={() => setOpen(!open)}>
           <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d={open ? 'M4 4l12 12M16 4L4 16' : 'M3 6h14M3 14h14'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none" /></svg>
         </button>

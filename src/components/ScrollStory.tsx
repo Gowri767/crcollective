@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import PvMarkup from './PvMarkup';
+import { realImage } from './ProductVisual';
 
 const steps = [
   { h: 'Child resistance is the focus of our design.', t: 'Our primary focus is developing child-resistant packaging that meets regulatory requirements and gives peace of mind to parents and caregivers.' },
@@ -10,7 +10,7 @@ const steps = [
   { h: 'Materials chosen with care.', t: 'From post-consumer recycled plastics to hemp and wheat plastics, we work with our factories toward more sustainable materials.' },
   { h: 'See what we can build for you.', t: 'Tell us about your product and we will walk you through the options.', cta: true },
 ];
-const demo = { name: 'Product placeholder', shape: 'tin' as const, accent: '#c9c4b6' };
+const imgs = ['tins', 'bio-boxes', 'leaning-jars', 'aluminum-cans', 'topicals'];
 
 export default function ScrollStory() {
   const track = useRef<HTMLDivElement>(null);
@@ -29,9 +29,8 @@ export default function ScrollStory() {
     return () => { cancelAnimationFrame(raf); window.removeEventListener('scroll', on); window.removeEventListener('resize', on); };
   }, []);
   const idx = Math.min(steps.length - 1, Math.floor(p * steps.length));
-  // lid lifts through the middle of the story and returns for the CTA
-  const lift = p < 0.15 ? 0 : p < 0.4 ? ((p - 0.15) / 0.25) * 220 : p < 0.7 ? 220 : p < 0.9 ? 220 * (1 - (p - 0.7) / 0.2) : 0;
-  const ry = -22 + p * 44;
+  const ry = -14 + p * 28;
+  const sc = 0.92 + Math.sin(p * Math.PI) * 0.12;
   return (
     <section className="story" aria-labelledby="story-h">
       <h2 id="story-h" className="sr-only" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>How CR Collective packaging is made</h2>
@@ -47,7 +46,11 @@ export default function ScrollStory() {
             ))}
           </div>
             <div className="story-prog" aria-hidden="true">{steps.map((_, i) => <i key={i} className={i <= idx ? 'on' : ''} />)}</div>
-          <div className="story-vis"><PvMarkup product={demo} style={{ ['--lift' as string]: lift, ['--ry' as string]: `${ry}deg` }} /></div>
+          <div className="story-vis"><div className="story-stage" style={{ transform: `perspective(1200px) rotateY(${ry}deg) scale(${sc})` }}>
+            {imgs.map((slug, i) => { const src = realImage(slug); return src ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img key={slug} src={src} alt={i === idx ? 'CR Collective child-resistant packaging' : ''} aria-hidden={i !== idx} className={`story-img${i === idx ? ' on' : i < idx ? ' past' : ''}`} loading="lazy" />) : null; })}
+          </div></div>
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@ import Reveal from '@/components/Reveal';
 
 export const metadata: Metadata = {
   title: 'About CR Collective | Custom Child Resistant Packaging Experts',
-  description: 'CR Collective develops custom child-resistant packaging for the cannabis and pharmaceutical industries, with safety and sustainability at the centre.',
+  description: 'CR Collective develops custom child-resistant packaging for the pharmaceutical industry and other regulated products, with safety and sustainability at the centre.',
   alternates: { canonical: '/about-us' },
 };
 export default function About() {
@@ -21,7 +21,7 @@ export default function About() {
         <div className="wrap cols">
           <Reveal><span className="eyebrow">What we do</span><h2>Custom product development services.</h2></Reveal>
           <Reveal i={1}>
-            <p>Our team of experienced professionals understands the unique needs of the cannabis and pharmaceutical industries, and we are dedicated to providing customized solutions that meet those needs. Whether you are looking for a specific material, size, shape or need custom branding and labeling, we have the expertise to deliver the perfect packaging solution for your product.</p>
+            <p>Our team of experienced professionals understands the unique needs of the pharmaceutical industry, and we are dedicated to providing customized solutions that meet those needs. Whether you are looking for a specific material, size, shape or need custom branding and labeling, we have the expertise to deliver the perfect packaging solution for your product.</p>
             <p>At our company, we pride ourselves on our commitment to quality and customer satisfaction. We use only the highest quality materials and adhere to the most strict quality control standards in order to ensure that every package we produce meets our precise merits.</p>
           </Reveal>
         </div>

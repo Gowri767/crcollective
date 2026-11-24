@@ -22,7 +22,7 @@ export default function Dev() {
         <Crumbs items={[{ name: 'Home', href: '/' }, { name: 'Product Development' }]} />
         <span className="eyebrow">Custom product development services</span>
         <h1>Better packaging begins with better thinking.</h1>
-        <p className="lead">Our team understands the unique needs of the cannabis and pharmaceutical industries, and we are dedicated to providing customized solutions that meet those needs.</p>
+        <p className="lead">Our team understands the unique needs of the pharmaceutical industry, and we are dedicated to providing customized solutions that meet those needs.</p>
       </section>
       <section className="sec dark">
         <div className="wrap">

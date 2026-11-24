@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { products, bySlug, related, site } from '@/data/products';
 import { realImage } from '@/components/ProductVisual';
-import ProductViewer from '@/components/ProductViewer';
-import ProductActions from '@/components/ProductActions';
+import ProductHero from '@/components/ProductHero';
+import { media } from '@/data/media';
 import ProductCard from '@/components/ProductCard';
 import Crumbs from '@/components/Crumbs';
 import JsonLd from '@/components/JsonLd';
@@ -28,17 +28,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       <section className="wrap phead" style={{ paddingBottom: 0 }}>
         <Crumbs items={[{ name: 'Home', href: '/' }, { name: 'Catalog', href: '/catalog' }, { name: p.name }]} />
       </section>
-      <section className="wrap phero">
-        <ProductViewer product={p} img={img} />
-        <div>
-          <span className={`badge ${p.comingSoon ? 'soon' : ''}`}>{p.comingSoon ? 'Coming soon' : 'Child resistant'}</span>
-          <h1 style={{ fontSize: 'clamp(2.4rem,5vw,4.2rem)' }}>{p.name}</h1>
-          {p.description.map((d, i) => <p key={i} className={i === 0 ? 'lead' : undefined} style={i === 0 ? { color: 'var(--ink)' } : { color: 'var(--muted)' }}>{d}</p>)}
-          {p.comingSoon ? <Link href="/contact-us?product=airtight-pod" className="btn" data-track="quote_cta" data-track-location="product_page">Ask About Availability <span className="arr">→</span></Link> : null}
-          {!p.comingSoon && <ProductActions slug={p.slug} name={p.name} variants={p.variants} />}
-          {p.comingSoon && p.variants.length > 0 && <><h3 style={{ fontSize: '1rem', margin: '28px 0 0' }}>Planned sizes</h3><div className="variants">{p.variants.map((v) => <span className="var" key={v} style={{ cursor: 'default' }}>{v}</span>)}</div></>}
-        </div>
-      </section>
+      <ProductHero p={p} hero={img} variants={media[p.slug]?.variants ?? {}} gallery={media[p.slug]?.gallery ?? []} />
 
       {p.claims.length > 0 && (
         <section className="sec stone"><div className="wrap cols">

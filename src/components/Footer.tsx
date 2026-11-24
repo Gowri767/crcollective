@@ -4,6 +4,8 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="wrap">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo-white.png" alt="CR Collective" width={765} height={132} className="logo-foot" />
         <div className="big">Let’s talk about your packaging.</div>
         <Link href="/contact-us" className="btn" data-track="quote_cta" data-track-location="footer">Request a Quote <span className="arr">→</span></Link>
         <div className="cols three">

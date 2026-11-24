@@ -28,7 +28,7 @@ export const products: Product[] = [
     summary: 'HempSeal™ airtight, child-resistant packages made with hemp grown in the USA.',
     description: [
       'Our HempSeal™ line consists of airtight, child-resistant packages, made with hemp grown in the USA. This box is perfect for keeping products fresh and secure. The use of hemp in our packaging also helps to reduce the amount of recycled plastic resin used, making it an eco-friendly choice.',
-      'Not only a friend to pre rolls, our patented airtight feature in this package extends the shelf life of gummies, mints, and other edibles.',
+      'Our patented airtight feature in this package extends the shelf life of gummies, mints, and other edibles.',
     ],
     variants: ['3J Hemp', '5J Hemp'],
     claims: [

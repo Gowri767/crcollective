@@ -354,3 +354,37 @@ section.wrap.phead[style*="paddingBottom: 0"]{padding-top:clamp(110px,12vw,150px
   .card:hover .pv-lid,.card:hover .pv-inner{transform:none}
 }
 @media(max-width:860px){.nav .burger{margin-left:auto}}
+
+/* ===== v4: official product imagery ===== */
+.logo{gap:0} .logo img{height:26px;width:auto;display:block}
+.footer .logo-foot{height:30px;width:auto;display:block;margin-bottom:28px}
+
+/* light stage so the white-background renders sit naturally, even in dark sections */
+.hero-stage{border-radius:44px;background:radial-gradient(70% 70% at 50% 42%,#fff,rgba(255,255,255,0) 72%),linear-gradient(160deg,#EAF2FC,#D6DCFB);box-shadow:0 40px 90px -30px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.6);overflow:hidden}
+.hero-stage::before{display:none}
+.ff-item{aspect-ratio:1/1}
+.ff-float{filter:drop-shadow(0 18px 18px rgba(8,29,51,.18))}
+.pv-swap{filter:none}
+/* cards: lift + tilt on hover */
+.card .pv-swap{transition:transform .7s var(--ease)}
+.card:hover .pv-swap{transform:scale(1.1) rotate(-4deg) translateY(-6px)}
+.card .vis{filter:drop-shadow(0 14px 14px rgba(8,29,51,.14))}
+/* scroll story */
+.story-vis{width:100%}
+.story-stage{position:relative;width:min(100%,520px);aspect-ratio:1/1;border-radius:44px;background:radial-gradient(70% 70% at 50% 42%,#fff,rgba(255,255,255,0) 72%),linear-gradient(160deg,#EAF2FC,#D6DCFB);box-shadow:0 40px 90px -30px rgba(0,0,0,.6);overflow:hidden;will-change:transform;transform-style:preserve-3d}
+.story-img{position:absolute;inset:8%;width:84%;height:84%;object-fit:contain;opacity:0;transform:translateY(40px) scale(.86) rotate(6deg);transition:opacity .7s var(--ease),transform .9s var(--ease)}
+.story-img.on{opacity:1;transform:none}
+.story-img.past{opacity:0;transform:translateY(-40px) scale(1.08) rotate(-6deg)}
+/* product page stage */
+.viewer.stagey{cursor:default;--tx:0;--ty:0;perspective:1100px}
+.vw-tilt{position:absolute;inset:0;transform:rotateY(calc(var(--tx) * 7deg)) rotateX(calc(var(--ty) * -6deg));transition:transform .35s var(--ease);transform-style:preserve-3d}
+.vw-img{position:absolute;inset:7%;width:86%;height:86%;object-fit:contain;opacity:0;transform:scale(.94);transition:opacity .55s var(--ease),transform .7s var(--ease)}
+.vw-img.on{opacity:1;transform:scale(1)}
+.viewer.stagey:hover .vw-img.on{transform:scale(1.05)}
+.pv-host{display:grid;place-items:center;width:100%;height:100%}
+.thumbs{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.thumb{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid rgba(8,29,51,.15);border-radius:14px;padding:6px 12px 6px 6px;font:inherit;font-size:.82rem;cursor:pointer;color:var(--ink);transition:border-color .2s,transform .2s}
+.thumb img{width:42px;height:42px;object-fit:contain;border-radius:8px}
+.thumb:hover{transform:translateY(-2px)} .thumb[aria-pressed=true]{border-color:#5046E5;box-shadow:0 0 0 2px rgba(80,70,229,.2)}
+@media(prefers-reduced-motion:reduce){.story-img,.vw-img,.vw-tilt,.card .pv-swap{transition:none}.story-stage{transform:none!important}.card:hover .pv-swap,.viewer.stagey:hover .vw-img.on{transform:none}}
+@media(max-width:860px){.story-stage{width:min(100%,360px)}}
